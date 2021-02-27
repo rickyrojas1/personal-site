@@ -1,0 +1,109 @@
+/* reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.block-effect-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ece8fc;
+  min-height: 100vh;
+  padding: 20px;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
+}
+
+p {
+  color: #2e2e2e;
+  margin-bottom: 20px;
+}
+
+/* block-$ */
+.block-effect {
+  font-size: calc(8px + 6vw);
+  transition-duration: 0.5;
+}
+
+.block-reveal-top,
+.block-reveal-bottom {
+  --t: calc(1.2s + 0.5s);
+
+  font-size: 102px;
+  color: transparent;
+  padding: 4px;
+
+  position: relative;
+  overflow: hidden;
+  padding-right: 30px;
+  margin-left: -200px;
+
+  animation: revealBlock 0s var(--t) forwards;
+}
+.block-reveal-bottom::after,
+.block-reveal-top::after {
+  content: "";
+
+  width: 0px;
+  height: 100%;
+  padding-bottom: 4px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.block-reveal-top::after {
+  background: #f87a7a;
+  animation: revealingIn 4s 0.5s forwards, revealingOut 1.2s var(--t) forwards;
+}
+
+.block-reveal-bottom::after {
+  background: #ffe0b2;
+  animation: revealingIn 1.2s 0.7s forwards, revealingOut 1.2s var(--t) forwards;
+}
+
+/* animations */
+@keyframes revealBlock {
+  100% {
+    color: #0f0f0f;
+  }
+}
+
+@keyframes revealingIn {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes revealingOut {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.abs-site-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: hsla(0, 0%, 0%, 0.6);
+  font-size: 16px;
+}

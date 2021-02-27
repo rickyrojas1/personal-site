@@ -1,0 +1,100 @@
+$background: #ece8fc;
+$white: white;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 700px;
+  background: $background;
+
+  @media only screen and (max-width: 1000px) {
+    width: 100vw;
+  }
+}
+
+.pill {
+  position: relative;
+  width: 160px;
+  height: 335px;
+  background: linear-gradient(to bottom, #312952 0%, #5a4a94 35%, #7b6bc6 100%);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.lanternHills {
+  position: absolute;
+  bottom: -1px;
+  width: 225px;
+  left: -25px;
+}
+
+.star {
+  background-color: $white;
+  position: absolute;
+  border-radius: 50%;
+}
+
+@for $i from 1 through 25 {
+  .star#{$i} {
+    $size: random(3) + px;
+    width: $size;
+    height: $size;
+    transform: scale(random(1) + 0.1);
+    left: random(175) + px;
+    top: random(230) + px;
+  }
+}
+
+@for $i from 1 through 10 {
+  $randomNum: random(50) + 30;
+  $size: $randomNum + px;
+
+  .lanternX#{$i} {
+    position: absolute;
+    bottom: -80px;
+    left: random(100) + px;
+    transform: translateX(0);
+    animation-name: lanternX#{$i};
+    animation-duration: random(5) + 5 + s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  .lanternY#{$i} {
+    display: inline block;
+    width: $size;
+    z-index: $randomNum * 1000;
+    animation-name: lanternY;
+    animation-duration: random(5) + 2 + s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform: translateY(0);
+    animation-delay: random(5) + 1 + s;
+  }
+
+  @keyframes lanternX#{$i} {
+    50% {
+      transform: translateX(random(75) + px);
+    }
+  }
+
+  @keyframes lanternY {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-200px);
+    }
+    100% {
+      transform: translateY(-400px);
+    }
+  }
+}

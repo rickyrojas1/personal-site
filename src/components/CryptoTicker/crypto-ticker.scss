@@ -1,0 +1,12 @@
+.ticker-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: auto;
+  margin-right: 190px;
+}
+
+.ticker-item {
+  margin: 5px;
+  white-space: nowrap;
+}
